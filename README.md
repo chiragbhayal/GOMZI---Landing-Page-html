@@ -27,3 +27,9 @@ reference a script puts together while the page runs (for example
 
 Serve the folder (e.g. `python3 -m http.server`) and open `Main.dc.html`;
 some browsers block the scripts over file://.
+
+## Deploying to Vercel
+
+Import the repository into Vercel and deploy it as a static site from the
+repository root. The root route (`/`) is rewritten to `Main.dc.html` by
+`vercel.json`, so no build command or output directory is required.
