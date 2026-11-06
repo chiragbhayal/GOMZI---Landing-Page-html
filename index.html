@@ -1,0 +1,847 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="description" content="GOMZI Supplements - Buy supplements and get gym membership FREE at Fitness with Gomzi Surat.">
+    <meta name="theme-color" content="#0E1109">
+    <title>GOMZI – Your protein now comes with a gym</title>
+    <script src="./vendor/react.js"></script>
+    <script src="./vendor/react-dom.js"></script>
+    <script src="./support.js"></script>
+</head>
+
+<body>
+    <x-dc>
+        <helmet>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+            <link rel="stylesheet"
+                href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&amp;display=swap">
+            <style>
+                *, *::before, *::after {
+                    box-sizing: border-box;
+                }
+
+                html {
+                    scroll-behavior: smooth;
+                    -webkit-text-size-adjust: 100%;
+                }
+
+                body {
+                    margin: 0;
+                    background: #0E1109;
+                    font-family: Poppins, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+                    overflow-x: hidden;
+                }
+
+                img {
+                    max-width: 100%;
+                    height: auto;
+                }
+
+                a:focus-visible {
+                    outline: 3px solid #A3C93A;
+                    outline-offset: 3px;
+                }
+
+                /* Smooth interactive touch targets */
+                .cta-btn {
+                    transition: transform 0.18s ease, box-shadow 0.18s ease, filter 0.18s ease;
+                }
+                .cta-btn:hover {
+                    transform: translateY(-2px);
+                    filter: brightness(1.05);
+                    box-shadow: 0 10px 24px rgba(163, 201, 58, 0.35);
+                }
+                .cta-btn:active {
+                    transform: translateY(0);
+                    filter: brightness(0.95);
+                }
+
+                /* Pricing Table Styles */
+                .price-table-wrapper {
+                    width: 100%;
+                    margin-top: 28px;
+                    border-radius: 18px;
+                    border: 1px solid #E5E9DC;
+                    overflow-x: auto;
+                    -webkit-overflow-scrolling: touch;
+                    background: #FFFFFF;
+                    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.04);
+                }
+
+                .price-table {
+                    width: 100%;
+                    border-collapse: collapse;
+                    text-align: left;
+                    font-family: inherit;
+                    min-width: 580px;
+                }
+
+                .price-table th {
+                    background: #0E1109;
+                    color: #FFFFFF;
+                    padding: 16px 20px;
+                    font-size: 13px;
+                    font-weight: 800;
+                    letter-spacing: 1px;
+                    text-transform: uppercase;
+                    border: none;
+                }
+
+                .price-table td {
+                    padding: 14px 20px;
+                    vertical-align: middle;
+                    font-size: 15px;
+                    color: #0E1109;
+                    border-bottom: 1px solid #EEF2E6;
+                }
+
+                .price-table tbody tr:last-child td {
+                    border-bottom: none;
+                }
+
+                .price-table tbody tr:nth-child(even) {
+                    background: #F9FBF5;
+                }
+
+                .price-table tbody tr:hover {
+                    background: #F1F6E6;
+                }
+
+                .badge-free {
+                    display: inline-flex;
+                    align-items: center;
+                    gap: 5px;
+                    background: rgba(94, 122, 16, 0.14);
+                    color: #5E7A10;
+                    font-weight: 700;
+                    font-size: 12px;
+                    padding: 5px 12px;
+                    border-radius: 999px;
+                    white-space: nowrap;
+                }
+
+                .badge-mix {
+                    display: inline-flex;
+                    align-items: center;
+                    gap: 5px;
+                    background: rgba(14, 17, 9, 0.08);
+                    color: #5A5F52;
+                    font-weight: 600;
+                    font-size: 12px;
+                    padding: 5px 12px;
+                    border-radius: 999px;
+                    white-space: nowrap;
+                }
+
+                /* Mobile Floating CTA Bar */
+                .mobile-sticky-bar {
+                    display: none;
+                    position: fixed;
+                    bottom: 0;
+                    left: 0;
+                    right: 0;
+                    z-index: 9999;
+                    background: rgba(14, 17, 9, 0.94);
+                    backdrop-filter: blur(12px);
+                    -webkit-backdrop-filter: blur(12px);
+                    padding: 10px 16px;
+                    border-top: 1px solid rgba(163, 201, 58, 0.3);
+                    gap: 10px;
+                    align-items: center;
+                    box-shadow: 0 -8px 25px rgba(0, 0, 0, 0.5);
+                }
+
+                /* Responsive Breakpoints */
+                @media (max-width: 900px) {
+                    .gym-grid-container {
+                        flex-direction: column !important;
+                    }
+                    .gym-main-image {
+                        width: 100% !important;
+                        height: auto !important;
+                        aspect-ratio: 16/10 !important;
+                    }
+                    .gym-side-group {
+                        flex-direction: row !important;
+                        width: 100% !important;
+                    }
+                    .gym-side-group img {
+                        flex: 1 1 0 !important;
+                        height: auto !important;
+                        aspect-ratio: 4/3 !important;
+                    }
+                }
+
+                @media (max-width: 640px) {
+                    .header-nav-links {
+                        display: none !important;
+                    }
+                    .stats-grid-box {
+                        display: grid !important;
+                        grid-template-columns: repeat(2, 1fr) !important;
+                        gap: 16px !important;
+                    }
+                    .hero-img-badge {
+                        left: 12px !important;
+                        bottom: 14px !important;
+                        padding: 12px 16px !important;
+                        max-width: 210px !important;
+                    }
+                    .hero-cta-group {
+                        flex-direction: column !important;
+                        width: 100% !important;
+                    }
+                    .hero-cta-group a {
+                        width: 100% !important;
+                        text-align: center !important;
+                        justify-content: center !important;
+                    }
+                    .family-img-group {
+                        margin-top: 16px !important;
+                    }
+                    .bonus-card {
+                        flex-direction: column !important;
+                        text-align: center !important;
+                        padding: 22px 18px !important;
+                    }
+                    .bonus-card a {
+                        width: 100% !important;
+                        justify-content: center !important;
+                    }
+                    .mobile-sticky-bar {
+                        display: flex !important;
+                    }
+                    .footer-wrap {
+                        padding-bottom: 90px !important;
+                    }
+                }
+            </style>
+        </helmet>
+        <div style="font-family:Poppins,Arial,sans-serif;color:#0E1109;background:#FFFFFF;width:100%;overflow-x:hidden">
+            <div
+                style="background:#A3C93A;text-align:center;padding:10px 16px;font-size:14px;font-weight:700;color:#0E1109">
+                LAUNCH OFFER · Buy GOMZI supplements, get gym membership FREE*</div>
+            <header style="background:#0E1109">
+                <div
+                    style="max-width:1160px;margin:0 auto;padding:14px 20px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:14px">
+                    <div style="background:#FFFFFF;border-radius:12px;padding:6px 12px;display:flex"><img
+                            src="./assets/ff7259e2560ee8e5261a6af44b5a4406.png" alt="GOMZI Supplements"
+                            style="height:40px;width:auto;display:block"></div>
+                    <div class="header-nav-links" style="display:flex;flex-wrap:wrap;align-items:center;gap:22px"><a href="#bestsellers"
+                            style="color:#FFFFFF;text-decoration:none;font-size:15px;font-weight:600">Products</a><a
+                            href="#results"
+                            style="color:#FFFFFF;text-decoration:none;font-size:15px;font-weight:600">Results</a><a
+                            href="#gyms"
+                            style="color:#FFFFFF;text-decoration:none;font-size:15px;font-weight:600">Gyms</a><a
+                            href="https://wa.me/918866015034?text=Hi%20GOMZI%2C%20I%20want%20the%20free%20gym%20membership%20offer"
+                            class="cta-btn"
+                            style="background:#A3C93A;color:#0E1109;text-decoration:none;padding:16px 28px;border-radius:999px;font-weight:700;font-size:16px;min-height:52px;box-sizing:border-box;display:inline-flex;align-items:center;justify-content:center;gap:10px">Claim
+                            offer</a></div>
+                </div>
+            </header>
+            <section
+                style="background:radial-gradient(1200px 600px at 80% 20%,rgba(163,201,58,0.20),rgba(14,17,9,0) 60%),#0E1109">
+                <div
+                    style="max-width:1160px;margin:0 auto;padding:clamp(40px,6vw,64px) 20px;display:flex;flex-wrap:wrap;align-items:center;gap:40px">
+                    <div style="flex:1 1 480px;min-width:0">
+                        <span
+                            style="display:inline-flex;align-items:center;gap:8px;background:rgba(163,201,58,0.14);color:#A3C93A;font-size:13px;font-weight:700;letter-spacing:1.5px;padding:8px 14px;border-radius:999px">●
+                            A GOMZI FIRST</span>
+                        <h1
+                            style="margin:22px 0 0;font-size:clamp(34px,7.5vw,84px);line-height:0.98;font-weight:800;letter-spacing:-2px;color:#FFFFFF">
+                            Your protein<br>now comes<br>with a <span style="color:#A3C93A">gym.</span></h1>
+                        <p
+                            style="margin:26px 0 0;font-size:clamp(17px,2.2vw,20px);line-height:1.6;color:#AEB4A3;max-width:520px">
+                            Shop your GOMZI supplements, and your gym membership at Fitness with Gomzi is on us.</p>
+                        <div class="hero-cta-group" style="display:flex;flex-wrap:wrap;gap:12px;margin-top:34px"><a
+                                href="https://wa.me/918866015034?text=Hi%20GOMZI%2C%20I%20want%20the%20free%20gym%20membership%20offer"
+                                class="cta-btn"
+                                style="background:#A3C93A;color:#0E1109;text-decoration:none;padding:16px 28px;border-radius:999px;font-weight:700;font-size:16px;min-height:52px;box-sizing:border-box;display:inline-flex;align-items:center;justify-content:center;gap:10px">Claim
+                                my free membership →</a><a href="tel:+918866015034"
+                                style="background:transparent;color:#FFFFFF;border:2px solid rgba(255,255,255,0.6);text-decoration:none;padding:16px 28px;border-radius:999px;font-weight:700;font-size:16px;min-height:52px;box-sizing:border-box;display:inline-flex;align-items:center;justify-content:center;gap:10px">Call
+                                88660 15034</a></div>
+                        <div style="display:flex;flex-wrap:wrap;gap:22px;margin-top:38px">
+                            <div
+                                style="display:flex;align-items:center;gap:8px;color:#FFFFFF;font-size:14px;font-weight:600">
+                                <span style="color:#A3C93A">✓</span>3 gyms in Surat</div>
+                            <div
+                                style="display:flex;align-items:center;gap:8px;color:#FFFFFF;font-size:14px;font-weight:600">
+                                <span style="color:#A3C93A">✓</span>Certified trainers</div>
+                            <div
+                                style="display:flex;align-items:center;gap:8px;color:#FFFFFF;font-size:14px;font-weight:600">
+                                <span style="color:#A3C93A">✓</span>Made in India</div>
+                        </div>
+                        <p style="margin:16px 0 0;font-size:12px;color:#7C8273">*T&amp;C apply</p>
+                    </div>
+                    <div style="flex:1 1 380px;min-width:0;max-width:470px;margin:0 auto;position:relative">
+                        <img src="./assets/e40d15cb61566baaf6065e5a188ca013.jpg"
+                            alt="GOMZI Whey Protein Blend, chocolate"
+                            style="width:100%;aspect-ratio:4/5;object-fit:cover;object-position:center 60%;border-radius:32px;display:block;box-shadow:0 40px 90px rgba(0,0,0,0.55)">
+                        <div
+                            class="hero-img-badge"
+                            style="position:absolute;left:-14px;bottom:28px;background:#FFFFFF;border-radius:20px;padding:16px 20px;box-shadow:0 18px 40px rgba(0,0,0,0.35);max-width:240px">
+                            <p style="margin:0;font-size:12px;font-weight:700;letter-spacing:1.5px;color:#5E7A10">
+                                INCLUDED WITH GOMZI</p>
+                            <p style="margin:4px 0 0;font-size:22px;font-weight:800;line-height:1.15;color:#0E1109">Gym
+                                membership FREE</p>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+            <section style="background:#A3C93A">
+                <div
+                    class="stats-grid-box"
+                    style="max-width:1160px;margin:0 auto;padding:30px 20px;display:flex;flex-wrap:wrap;gap:20px;justify-content:space-between">
+                    <div style="flex:1 1 180px;min-width:0">
+                        <p style="margin:0;font-size:38px;font-weight:800;line-height:1;color:#0E1109">3</p>
+                        <p style="margin:6px 0 0;font-size:15px;font-weight:600;color:#0E1109">Gyms: Vesu, Katargam,
+                            Adajan</p>
+                    </div>
+                    <div style="flex:1 1 180px;min-width:0">
+                        <p style="margin:0;font-size:38px;font-weight:800;line-height:1;color:#0E1109">₹0</p>
+                        <p style="margin:6px 0 0;font-size:15px;font-weight:600;color:#0E1109">Extra gym fee</p>
+                    </div>
+                    <div style="flex:1 1 180px;min-width:0">
+                        <p style="margin:0;font-size:38px;font-weight:800;line-height:1;color:#0E1109">1:1</p>
+                        <p style="margin:6px 0 0;font-size:15px;font-weight:600;color:#0E1109">Coaching in our packs</p>
+                    </div>
+                    <div style="flex:1 1 180px;min-width:0">
+                        <p style="margin:0;font-size:38px;font-weight:800;line-height:1;color:#0E1109">100%</p>
+                        <p style="margin:6px 0 0;font-size:15px;font-weight:600;color:#0E1109">Made in India</p>
+                    </div>
+                </div>
+            </section>
+            <section style="background:#FFFFFF">
+                <div style="max-width:1160px;margin:0 auto;padding:clamp(44px,6vw,68px) 20px">
+                    <div style="display:flex;flex-wrap:wrap;align-items:center;gap:36px">
+                        <div style="flex:1 1 400px;min-width:0;position:relative"><img
+                                src="./assets/f44a06231a2fa8866f9e669845762f2b.jpg"
+                                alt="GOMZI whey protein scooped into a shaker"
+                                style="width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:28px;display:block;box-shadow:0 20px 50px rgba(0,0,0,0.18);">
+                        </div>
+                        <div style="flex:1 1 420px;min-width:0">
+                            <p
+                                style="margin:0 0 14px;font-size:13px;font-weight:700;letter-spacing:2.5px;color:#5E7A10">
+                                WHY WE DID THIS</p>
+                            <h2
+                                style="margin:0;font-size:clamp(32px,5vw,52px);line-height:1.06;font-weight:800;letter-spacing:-1px;color:#0E1109;">
+                                Great results need two things. Most people pay for only one.</h2>
+                            <p style="margin:24px 0 0;font-size:18px;line-height:1.75;color:#5A5F52">Some train hard and
+                                skip nutrition. Others buy supplements but never get a proper gym. Either way, the
+                                results never show up.</p>
+                            <p style="margin:16px 0 0;font-size:18px;line-height:1.75;color:#5A5F52">So we brought both
+                                together. <strong style="color:#0E1109">You invest in your nutrition. We give you the
+                                    gym.</strong></p>
+                            <div style="margin-top:32px;display:flex;flex-wrap:wrap;gap:12px">
+                                <div
+                                    style="flex:1 1 200px;min-width:0;background:#F4F7EA;border-radius:20px;padding:22px">
+                                    <p style="margin:0;font-size:14px;font-weight:700;color:#5E7A10">YOU PAY FOR</p>
+                                    <p style="margin:6px 0 0;font-size:22px;font-weight:800;color:#0E1109">Your
+                                        supplement</p>
+                                </div>
+                                <div
+                                    style="flex:1 1 200px;min-width:0;background:#0E1109;border-radius:20px;padding:22px">
+                                    <p style="margin:0;font-size:14px;font-weight:700;color:#A3C93A">WE GIVE YOU</p>
+                                    <p style="margin:6px 0 0;font-size:22px;font-weight:800;color:#FFFFFF">Gym
+                                        membership FREE</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section id="bestsellers" style="background:#F4F7EA">
+                <div style="max-width:1160px;margin:0 auto;padding:clamp(44px,6vw,68px) 20px">
+                    <div
+                        style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:20px">
+                        <div style="max-width:620px">
+                            <p
+                                style="margin:0 0 14px;font-size:13px;font-weight:700;letter-spacing:2.5px;color:#5E7A10">
+                                BESTSELLERS</p>
+                            <h2
+                                style="margin:0;font-size:clamp(32px,5vw,52px);line-height:1.06;font-weight:800;letter-spacing:-1px;color:#0E1109;">
+                                Pick your fuel. The gym comes free.</h2>
+                        </div><a href="#prices"
+                            style="font-size:16px;font-weight:700;color:#5E7A10;text-decoration:none">See all products
+                            →</a>
+                    </div>
+                    <div style="display:flex;flex-wrap:wrap;gap:22px;margin-top:28px">
+                        <div
+                            style="flex:1 1 250px;min-width:0;background:#FFFFFF;border-radius:26px;overflow:hidden;box-shadow:0 20px 50px rgba(0,0,0,0.18);display:flex;flex-direction:column">
+                            <div style="position:relative"><img src="./assets/e40d15cb61566baaf6065e5a188ca013.jpg"
+                                    alt="Whey Blend · Chocolate"
+                                    style="width:100%;aspect-ratio:4/5;object-fit:cover;object-position:center 62%;display:block"><span
+                                    style="position:absolute;left:14px;top:14px;background:#0E1109;color:#A3C93A;font-size:12px;font-weight:700;letter-spacing:1px;padding:7px 12px;border-radius:999px">BESTSELLER</span>
+                            </div>
+                            <div style="padding:20px 22px 22px;display:flex;flex-direction:column;gap:8px;flex:1">
+                                <p style="margin:0;font-size:19px;font-weight:800;color:#0E1109">Whey Blend · Chocolate
+                                </p>
+                                <p style="margin:0;font-size:15px;color:#5A5F52">1kg · Creatine 250g FREE</p>
+                                <div
+                                    style="margin-top:auto;padding-top:12px;display:flex;align-items:center;justify-content:space-between;gap:10px">
+                                    <span style="font-size:24px;font-weight:800;color:#0E1109">₹4,300</span><a
+                                        href="https://wa.me/918866015034?text=Hi%20GOMZI%2C%20I%20want%20the%20free%20gym%20membership%20offer"
+                                        style="background:#A3C93A;color:#0E1109;text-decoration:none;font-weight:700;font-size:14px;padding:11px 16px;border-radius:999px;min-height:44px;box-sizing:border-box;display:inline-flex;align-items:center">Order</a>
+                                </div>
+                                <p style="margin:4px 0 0;font-size:13px;font-weight:700;color:#5E7A10">+ Gym membership
+                                    FREE</p>
+                            </div>
+                        </div>
+                        <div
+                            style="flex:1 1 250px;min-width:0;background:#FFFFFF;border-radius:26px;overflow:hidden;box-shadow:0 20px 50px rgba(0,0,0,0.18);display:flex;flex-direction:column">
+                            <div style="position:relative"><img src="./assets/b9680de8723c3f7418a3d1f7965ad9d6.jpg"
+                                    alt="Whey Blend · Mango"
+                                    style="width:100%;aspect-ratio:4/5;object-fit:cover;object-position:center 62%;display:block"><span
+                                    style="position:absolute;left:14px;top:14px;background:#0E1109;color:#A3C93A;font-size:12px;font-weight:700;letter-spacing:1px;padding:7px 12px;border-radius:999px">FAN
+                                    FAVOURITE</span></div>
+                            <div style="padding:20px 22px 22px;display:flex;flex-direction:column;gap:8px;flex:1">
+                                <p style="margin:0;font-size:19px;font-weight:800;color:#0E1109">Whey Blend · Mango</p>
+                                <p style="margin:0;font-size:15px;color:#5A5F52">1kg · Creatine 250g FREE</p>
+                                <div
+                                    style="margin-top:auto;padding-top:12px;display:flex;align-items:center;justify-content:space-between;gap:10px">
+                                    <span style="font-size:24px;font-weight:800;color:#0E1109">₹4,300</span><a
+                                        href="https://wa.me/918866015034?text=Hi%20GOMZI%2C%20I%20want%20the%20free%20gym%20membership%20offer"
+                                        style="background:#A3C93A;color:#0E1109;text-decoration:none;font-weight:700;font-size:14px;padding:11px 16px;border-radius:999px;min-height:44px;box-sizing:border-box;display:inline-flex;align-items:center">Order</a>
+                                </div>
+                                <p style="margin:4px 0 0;font-size:13px;font-weight:700;color:#5E7A10">+ Gym membership
+                                    FREE</p>
+                            </div>
+                        </div>
+                        <div
+                            style="flex:1 1 250px;min-width:0;background:#FFFFFF;border-radius:26px;overflow:hidden;box-shadow:0 20px 50px rgba(0,0,0,0.18);display:flex;flex-direction:column">
+                            <div style="position:relative"><img src="./assets/05289358bf8921fc5a7b08d42aa37ccd.jpg"
+                                    alt="Whey Blend · Mawa Kulfi"
+                                    style="width:100%;aspect-ratio:4/5;object-fit:cover;object-position:center 62%;display:block"><span
+                                    style="position:absolute;left:14px;top:14px;background:#0E1109;color:#A3C93A;font-size:12px;font-weight:700;letter-spacing:1px;padding:7px 12px;border-radius:999px">DESI
+                                    FLAVOUR</span></div>
+                            <div style="padding:20px 22px 22px;display:flex;flex-direction:column;gap:8px;flex:1">
+                                <p style="margin:0;font-size:19px;font-weight:800;color:#0E1109">Whey Blend · Mawa Kulfi
+                                </p>
+                                <p style="margin:0;font-size:15px;color:#5A5F52">1kg · Creatine 250g FREE</p>
+                                <div
+                                    style="margin-top:auto;padding-top:12px;display:flex;align-items:center;justify-content:space-between;gap:10px">
+                                    <span style="font-size:24px;font-weight:800;color:#0E1109">₹4,300</span><a
+                                        href="https://wa.me/918866015034?text=Hi%20GOMZI%2C%20I%20want%20the%20free%20gym%20membership%20offer"
+                                        style="background:#A3C93A;color:#0E1109;text-decoration:none;font-weight:700;font-size:14px;padding:11px 16px;border-radius:999px;min-height:44px;box-sizing:border-box;display:inline-flex;align-items:center">Order</a>
+                                </div>
+                                <p style="margin:4px 0 0;font-size:13px;font-weight:700;color:#5E7A10">+ Gym membership
+                                    FREE</p>
+                            </div>
+                        </div>
+                        <div
+                            style="flex:1 1 250px;min-width:0;background:#FFFFFF;border-radius:26px;overflow:hidden;box-shadow:0 20px 50px rgba(0,0,0,0.18);display:flex;flex-direction:column">
+                            <div style="position:relative"><img src="./assets/45aa68f96a28a0fbced3c5c3da2c2b41.jpg"
+                                    alt="Ignite Fat Burner"
+                                    style="width:100%;aspect-ratio:4/5;object-fit:cover;object-position:center 30%;display:block"><span
+                                    style="position:absolute;left:14px;top:14px;background:#0E1109;color:#A3C93A;font-size:12px;font-weight:700;letter-spacing:1px;padding:7px 12px;border-radius:999px">FAT
+                                    LOSS</span></div>
+                            <div style="padding:20px 22px 22px;display:flex;flex-direction:column;gap:8px;flex:1">
+                                <p style="margin:0;font-size:19px;font-weight:800;color:#0E1109">Ignite Fat Burner</p>
+                                <p style="margin:0;font-size:15px;color:#5A5F52">250g · Tangy Orange</p>
+                                <div
+                                    style="margin-top:auto;padding-top:12px;display:flex;align-items:center;justify-content:space-between;gap:10px">
+                                    <span style="font-size:24px;font-weight:800;color:#0E1109">₹2,580</span><a
+                                        href="https://wa.me/918866015034?text=Hi%20GOMZI%2C%20I%20want%20the%20free%20gym%20membership%20offer"
+                                        style="background:#A3C93A;color:#0E1109;text-decoration:none;font-weight:700;font-size:14px;padding:11px 16px;border-radius:999px;min-height:44px;box-sizing:border-box;display:inline-flex;align-items:center">Order</a>
+                                </div>
+                                <p style="margin:4px 0 0;font-size:13px;font-weight:700;color:#5E7A10">+ Gym membership
+                                    FREE</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        style="margin-top:24px;background:#0E1109;border-radius:24px;padding:24px 28px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px">
+                        <p style="margin:0;font-size:20px;font-weight:800;color:#FFFFFF">Bonus: <span
+                                style="color:#A3C93A">1kg whey → Creatine FREE</span> &nbsp;·&nbsp; <span
+                                style="color:#A3C93A">2kg whey → BCAA FREE</span></p><a
+                            href="https://wa.me/918866015034?text=Hi%20GOMZI%2C%20I%20want%20the%20free%20gym%20membership%20offer"
+                            style="background:#A3C93A;color:#0E1109;text-decoration:none;padding:16px 28px;border-radius:999px;font-weight:700;font-size:16px;min-height:52px;box-sizing:border-box;display:inline-flex;align-items:center;justify-content:center;gap:10px">Claim
+                            on WhatsApp</a>
+                    </div>
+                </div>
+            </section>
+            <section id="results" style="background:#FFFFFF">
+                <div style="max-width:1160px;margin:0 auto;padding:clamp(44px,6vw,68px) 20px">
+                    <div style="text-align:center;max-width:720px;margin:0 auto">
+                        <p style="margin:0 0 14px;font-size:13px;font-weight:700;letter-spacing:2.5px;color:#5E7A10">
+                            REAL MEMBERS · REAL RESULTS</p>
+                        <h2
+                            style="margin:0;font-size:clamp(32px,5vw,52px);line-height:1.06;font-weight:800;letter-spacing:-1px;color:#0E1109;text-align:center;">
+                            This is what training + nutrition looks like.</h2>
+                    </div>
+                    <div style="display:flex;flex-wrap:wrap;gap:22px;margin-top:28px">
+                        <div
+                            style="flex:1 1 250px;min-width:0;background:#FFFFFF;border-radius:24px;overflow:hidden;box-shadow:0 20px 50px rgba(0,0,0,0.18);">
+                            <img src="./assets/4a3d00a42bd5ce50471b13c3324bb796.jpg" alt="Jenil transformation"
+                                style="width:100%;aspect-ratio:1/1;object-fit:cover;display:block">
+                            <div style="padding:16px 20px 20px">
+                                <p style="margin:0;font-size:18px;font-weight:800;color:#0E1109">Jenil</p>
+                                <p style="margin:4px 0 0;font-size:15px;font-weight:600;color:#5E7A10">96 kg → 81 kg in
+                                    2 months</p>
+                            </div>
+                        </div>
+                        <div
+                            style="flex:1 1 250px;min-width:0;background:#FFFFFF;border-radius:24px;overflow:hidden;box-shadow:0 20px 50px rgba(0,0,0,0.18);">
+                            <img src="./assets/6e4193ad9b69209c857042f88173f824.jpg" alt="Hetvi transformation"
+                                style="width:100%;aspect-ratio:1/1;object-fit:cover;display:block">
+                            <div style="padding:16px 20px 20px">
+                                <p style="margin:0;font-size:18px;font-weight:800;color:#0E1109">Hetvi</p>
+                                <p style="margin:4px 0 0;font-size:15px;font-weight:600;color:#5E7A10">91.1 kg → 80.2 kg
+                                    in 4.5 months</p>
+                            </div>
+                        </div>
+                        <div
+                            style="flex:1 1 250px;min-width:0;background:#FFFFFF;border-radius:24px;overflow:hidden;box-shadow:0 20px 50px rgba(0,0,0,0.18);">
+                            <img src="./assets/d5405dd61166bc91642d9bfe837b3876.jpg" alt="Prep coaching transformation"
+                                style="width:100%;aspect-ratio:1/1;object-fit:cover;display:block">
+                            <div style="padding:16px 20px 20px">
+                                <p style="margin:0;font-size:18px;font-weight:800;color:#0E1109">Prep coaching</p>
+                                <p style="margin:4px 0 0;font-size:15px;font-weight:600;color:#5E7A10">96 kg → 75 kg in
+                                    6 months</p>
+                            </div>
+                        </div>
+                        <div
+                            style="flex:1 1 250px;min-width:0;background:#FFFFFF;border-radius:24px;overflow:hidden;box-shadow:0 20px 50px rgba(0,0,0,0.18);">
+                            <img src="./assets/f5db60d8ab73dbf2a68e71ea9636109b.jpg" alt="Kinjal transformation"
+                                style="width:100%;aspect-ratio:1/1;object-fit:cover;display:block">
+                            <div style="padding:16px 20px 20px">
+                                <p style="margin:0;font-size:18px;font-weight:800;color:#0E1109">Kinjal</p>
+                                <p style="margin:4px 0 0;font-size:15px;font-weight:600;color:#5E7A10">Fat loss journey
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <p style="margin:18px 0 0;text-align:center;font-size:13px;color:#5A5F52">Individual results vary
+                        with training, diet and consistency.</p>
+                </div>
+            </section>
+            <section id="packs" style="background:#0E1109">
+                <div style="max-width:1160px;margin:0 auto;padding:clamp(44px,6vw,68px) 20px">
+                    <div
+                        style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:20px">
+                        <div style="max-width:640px">
+                            <p
+                                style="margin:0 0 14px;font-size:13px;font-weight:700;letter-spacing:2.5px;color:#A3C93A">
+                                TRANSFORMATION PACKS</p>
+                            <h2
+                                style="margin:0;font-size:clamp(32px,5vw,52px);line-height:1.06;font-weight:800;letter-spacing:-1px;color:#FFFFFF;">
+                                Want a coach in your corner?</h2>
+                        </div>
+                        <p style="margin:0;max-width:380px;font-size:17px;line-height:1.6;color:#AEB4A3">Our packs add a
+                            personal trainer and a dietitian. You still pay only for the supplements.</p>
+                    </div>
+                    <div style="display:flex;flex-wrap:wrap;gap:22px;margin-top:28px">
+                        <div
+                            style="flex:1 1 440px;min-width:0;background:#171A11;border:1px solid rgba(163,201,58,0.25);border-radius:28px;overflow:hidden;display:flex;flex-direction:column">
+                            <img src="./assets/4d3366b8bb9ccafb408b87bc852027c8.jpg" alt="Fat Loss Pack"
+                                style="width:100%;aspect-ratio:16/10;object-fit:cover;object-position:center 22%;display:block">
+                            <div style="padding:28px;display:flex;flex-direction:column;flex:1">
+                                <div
+                                    style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:10px">
+                                    <h3 style="margin:0;font-size:28px;font-weight:800;color:#FFFFFF">Fat Loss Pack</h3>
+                                    <span style="font-size:30px;font-weight:800;color:#A3C93A">₹8,500</span>
+                                </div>
+                                <ul style="list-style:none;margin:16px 0 0;padding:0">
+                                    <li style="display:flex;gap:10px;padding:7px 0;font-size:16px;color:#E8EBE2"><span
+                                            style="color:#A3C93A;font-weight:800">✓</span>Whey Blend 1kg + Ignite Fat
+                                        Burner</li>
+                                    <li style="display:flex;gap:10px;padding:7px 0;font-size:16px;color:#E8EBE2"><span
+                                            style="color:#A3C93A;font-weight:800">✓</span>Gym membership</li>
+                                    <li style="display:flex;gap:10px;padding:7px 0;font-size:16px;color:#E8EBE2"><span
+                                            style="color:#A3C93A;font-weight:800">✓</span>Personal trainer</li>
+                                    <li style="display:flex;gap:10px;padding:7px 0;font-size:16px;color:#E8EBE2"><span
+                                            style="color:#A3C93A;font-weight:800">✓</span>Dietitian + custom diet plan
+                                    </li>
+                                    <li style="display:flex;gap:10px;padding:7px 0;font-size:16px;color:#E8EBE2"><span
+                                            style="color:#A3C93A;font-weight:800">✓</span>Blood test + full body
+                                        analysis</li>
+                                </ul>
+                                <div style="margin-top:auto;padding-top:24px"><a
+                                        href="https://wa.me/918866015034?text=Hi%20GOMZI%2C%20I%20want%20the%20free%20gym%20membership%20offer"
+                                        style="background:#A3C93A;color:#0E1109;text-decoration:none;padding:16px 28px;border-radius:999px;font-weight:700;font-size:16px;min-height:52px;box-sizing:border-box;display:inline-flex;align-items:center;justify-content:center;gap:10px">Start
+                                        my transformation</a></div>
+                            </div>
+                        </div>
+                        <div
+                            style="flex:1 1 440px;min-width:0;background:#171A11;border:1px solid rgba(163,201,58,0.25);border-radius:28px;overflow:hidden;display:flex;flex-direction:column">
+                            <img src="./assets/49eb386086fb478d18392a6c2c019b19.jpg" alt="Muscle Building Pack"
+                                style="width:100%;aspect-ratio:16/10;object-fit:cover;object-position:center 45%;display:block">
+                            <div style="padding:28px;display:flex;flex-direction:column;flex:1">
+                                <div
+                                    style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:10px">
+                                    <h3 style="margin:0;font-size:28px;font-weight:800;color:#FFFFFF">Muscle Building
+                                        Pack</h3><span
+                                        style="font-size:30px;font-weight:800;color:#A3C93A">₹11,500</span>
+                                </div>
+                                <ul style="list-style:none;margin:16px 0 0;padding:0">
+                                    <li style="display:flex;gap:10px;padding:7px 0;font-size:16px;color:#E8EBE2"><span
+                                            style="color:#A3C93A;font-weight:800">✓</span>Whey Concentrate 2kg +
+                                        Creatine + BCAA</li>
+                                    <li style="display:flex;gap:10px;padding:7px 0;font-size:16px;color:#E8EBE2"><span
+                                            style="color:#A3C93A;font-weight:800">✓</span>Gym membership</li>
+                                    <li style="display:flex;gap:10px;padding:7px 0;font-size:16px;color:#E8EBE2"><span
+                                            style="color:#A3C93A;font-weight:800">✓</span>Personal trainer</li>
+                                    <li style="display:flex;gap:10px;padding:7px 0;font-size:16px;color:#E8EBE2"><span
+                                            style="color:#A3C93A;font-weight:800">✓</span>Dietitian + custom diet plan
+                                    </li>
+                                    <li style="display:flex;gap:10px;padding:7px 0;font-size:16px;color:#E8EBE2"><span
+                                            style="color:#A3C93A;font-weight:800">✓</span>Blood test + full body
+                                        analysis</li>
+                                </ul>
+                                <div style="margin-top:auto;padding-top:24px"><a
+                                        href="https://wa.me/918866015034?text=Hi%20GOMZI%2C%20I%20want%20the%20free%20gym%20membership%20offer"
+                                        style="background:#A3C93A;color:#0E1109;text-decoration:none;padding:16px 28px;border-radius:999px;font-weight:700;font-size:16px;min-height:52px;box-sizing:border-box;display:inline-flex;align-items:center;justify-content:center;gap:10px">Start
+                                        my transformation</a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section id="gyms" style="background:#F4F7EA">
+                <div style="max-width:1160px;margin:0 auto;padding:clamp(44px,6vw,68px) 20px">
+                    <div
+                        style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:20px">
+                        <div style="max-width:620px">
+                            <p
+                                style="margin:0 0 14px;font-size:13px;font-weight:700;letter-spacing:2.5px;color:#5E7A10">
+                                WHERE YOU'LL TRAIN</p>
+                            <h2
+                                style="margin:0;font-size:clamp(32px,5vw,52px);line-height:1.06;font-weight:800;letter-spacing:-1px;color:#0E1109;">
+                                3 fully equipped gyms in Surat.</h2>
+                        </div>
+                        <p style="margin:0;font-size:20px;font-weight:800;color:#0E1109">Vesu · Katargam · Adajan</p>
+                    </div>
+                    <div class="gym-grid-container" style="display:flex;flex-wrap:wrap;gap:18px;margin-top:26px">
+                        <img class="gym-main-image" src="./assets/08a4896b9f05d2dbf6f695d222181c7a.jpg" alt="Fitness with Gomzi gym floor"
+                            style="flex:2 1 520px;min-width:0;width:100%;max-width:100%;height:420px;object-fit:cover;border-radius:28px;display:block;box-shadow:0 20px 50px rgba(0,0,0,0.18);">
+                        <div class="gym-side-group" style="flex:1 1 300px;min-width:0;display:flex;flex-direction:column;gap:18px"><img
+                                src="./assets/eda4fb635bd893162594ffdbe5b3c3a9.jpg" alt="Fitness with Gomzi gym"
+                                style="width:100%;height:201px;object-fit:cover;border-radius:24px;display:block;box-shadow:0 20px 50px rgba(0,0,0,0.18);"><img
+                                src="./assets/254bb02bd8047d1ea34a700dc544c984.jpg" alt="Fitness with Gomzi gym"
+                                style="width:100%;height:201px;object-fit:cover;border-radius:24px;display:block;box-shadow:0 20px 50px rgba(0,0,0,0.18);">
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section style="background:#FFFFFF">
+                <div style="max-width:1160px;margin:0 auto;padding:clamp(44px,6vw,68px) 20px">
+                    <div style="display:flex;flex-wrap:wrap;align-items:center;gap:48px">
+                        <div style="flex:1 1 380px;min-width:0">
+                            <p
+                                style="margin:0 0 14px;font-size:13px;font-weight:700;letter-spacing:2.5px;color:#5E7A10">
+                                THE GOMZI FAMILY</p>
+                            <h2
+                                style="margin:0;font-size:clamp(32px,5vw,52px);line-height:1.06;font-weight:800;letter-spacing:-1px;color:#0E1109;">
+                                They came for protein. They left with a gym.</h2>
+                            <p style="margin:22px 0 0;font-size:18px;line-height:1.7;color:#5A5F52">Join members across
+                                Vesu, Katargam and Adajan who now train with GOMZI fuel.</p>
+                            <div style="margin-top:28px"><a
+                                    href="https://wa.me/918866015034?text=Hi%20GOMZI%2C%20I%20want%20the%20free%20gym%20membership%20offer"
+                                    style="background:#0E1109;color:#FFFFFF;text-decoration:none;padding:16px 28px;border-radius:999px;font-weight:700;font-size:16px;min-height:52px;box-sizing:border-box;display:inline-flex;align-items:center;justify-content:center;gap:10px">Join
+                                    them on WhatsApp</a></div>
+                        </div>
+                        <div style="flex:1 1 520px;min-width:0;display:flex;gap:16px"><img
+                                src="./assets/5baa7858fdf7925e1d73e02fed28cf93.jpg" alt="GOMZI members in store"
+                                style="flex:1 1 0;min-width:0;width:0;aspect-ratio:3/4;object-fit:cover;border-radius:24px;display:block;box-shadow:0 20px 50px rgba(0,0,0,0.18);"><img
+                                src="./assets/381ab19c5c28659c35e697f315f807ce.jpg"
+                                alt="GOMZI customer with whey protein"
+                                style="flex:1 1 0;min-width:0;width:0;aspect-ratio:3/4;object-fit:cover;border-radius:24px;display:block;margin-top:26px;box-shadow:0 20px 50px rgba(0,0,0,0.18);">
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section id="prices" style="background:#F4F7EA">
+                <div style="max-width:1160px;margin:0 auto;padding:clamp(44px,6vw,68px) 20px">
+                    <div
+                        style="background:#FFFFFF;border-radius:30px;padding:clamp(24px,4vw,48px);box-shadow:0 20px 50px rgba(0,0,0,0.18);">
+                        <div
+                            style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:16px">
+                            <p
+                                style="margin:0 0 14px;font-size:13px;font-weight:700;letter-spacing:2.5px;color:#5E7A10">
+                                FULL PRICE LIST</p>
+                        </div>
+                        <h2
+                            style="margin:0;font-size:clamp(32px,5vw,52px);line-height:1.06;font-weight:800;letter-spacing:-1px;color:#0E1109;">
+                            Our full range.</h2>
+                        <p style="margin:12px 0 0;font-size:16px;color:#5A5F52">MRP. Any bill of ₹999 or more includes
+                            gym membership FREE. Mix products to reach ₹999.</p>
+                        <div class="price-columns-container" style="display:flex;flex-wrap:wrap;margin-top:28px;">
+                            <!-- LEFT SECTION / COLUMN (Products 1-9) -->
+                            <div class="price-col price-col-left" style="flex:1 1 340px;min-width:0;padding-right:clamp(16px, 3vw, 36px);border-right:1.5px solid #E2E6D8;">
+                                <div style="display:flex;justify-content:space-between;gap:12px;padding:14px 0;border-bottom:1px solid #E7EBDD">
+                                    <span style="font-size:16px;font-weight:600;color:#0E1109">Whey Protein Blend</span>
+                                    <span style="font-size:15px;font-weight:700;color:#0E1109;text-align:right">1kg ₹4,300 · 2kg ₹7,600</span>
+                                </div>
+                                <div style="display:flex;justify-content:space-between;gap:12px;padding:14px 0;border-bottom:1px solid #E7EBDD">
+                                    <span style="font-size:16px;font-weight:600;color:#0E1109">Whey Isolate</span>
+                                    <span style="font-size:15px;font-weight:700;color:#0E1109;text-align:right">1kg ₹7,000 · 2kg ₹13,500</span>
+                                </div>
+                                <div style="display:flex;justify-content:space-between;gap:12px;padding:14px 0;border-bottom:1px solid #E7EBDD">
+                                    <span style="font-size:16px;font-weight:600;color:#0E1109">Mass Gainer</span>
+                                    <span style="font-size:15px;font-weight:700;color:#0E1109;text-align:right">1kg ₹1,499 · 3kg ₹4,100</span>
+                                </div>
+                                <div style="display:flex;justify-content:space-between;gap:12px;padding:14px 0;border-bottom:1px solid #E7EBDD">
+                                    <span style="font-size:16px;font-weight:600;color:#0E1109">Pre-Workout</span>
+                                    <span style="font-size:15px;font-weight:700;color:#0E1109;text-align:right">250g ₹2,700</span>
+                                </div>
+                                <div style="display:flex;justify-content:space-between;gap:12px;padding:14px 0;border-bottom:1px solid #E7EBDD">
+                                    <span style="font-size:16px;font-weight:600;color:#0E1109">BCAA</span>
+                                    <span style="font-size:15px;font-weight:700;color:#0E1109;text-align:right">250g ₹1,600</span>
+                                </div>
+                                <div style="display:flex;justify-content:space-between;gap:12px;padding:14px 0;border-bottom:1px solid #E7EBDD">
+                                    <span style="font-size:16px;font-weight:600;color:#0E1109">PCOS Tablet</span>
+                                    <span style="font-size:15px;font-weight:700;color:#0E1109;text-align:right">₹1,199</span>
+                                </div>
+                                <div style="display:flex;justify-content:space-between;gap:12px;padding:14px 0;border-bottom:1px solid #E7EBDD">
+                                    <span style="font-size:16px;font-weight:600;color:#0E1109">Liver Health Tablet</span>
+                                    <span style="font-size:15px;font-weight:700;color:#0E1109;text-align:right">₹1,299</span>
+                                </div>
+                                <div style="display:flex;justify-content:space-between;gap:12px;padding:14px 0;border-bottom:1px solid #E7EBDD">
+                                    <span style="font-size:16px;font-weight:600;color:#0E1109">Biotin Capsule</span>
+                                    <span style="font-size:15px;font-weight:700;color:#0E1109;text-align:right">₹999</span>
+                                </div>
+                                <div style="display:flex;justify-content:space-between;gap:12px;padding:14px 0;border-bottom:1px solid #E7EBDD">
+                                    <span style="font-size:16px;font-weight:600;color:#0E1109">D3 + K2 Tablet</span>
+                                    <span style="font-size:15px;font-weight:700;color:#0E1109;text-align:right">₹899</span>
+                                </div>
+                            </div>
+
+                            <!-- RIGHT SECTION / COLUMN (Products 10-19) -->
+                            <div class="price-col price-col-right" style="flex:1 1 340px;min-width:0;padding-left:clamp(16px, 3vw, 36px);">
+                                <div style="display:flex;justify-content:space-between;gap:12px;padding:14px 0;border-bottom:1px solid #E7EBDD">
+                                    <span style="font-size:16px;font-weight:600;color:#0E1109">Whey Concentrate</span>
+                                    <span style="font-size:15px;font-weight:700;color:#0E1109;text-align:right">1kg ₹5,300 · 2kg ₹8,600</span>
+                                </div>
+                                <div style="display:flex;justify-content:space-between;gap:12px;padding:14px 0;border-bottom:1px solid #E7EBDD">
+                                    <span style="font-size:16px;font-weight:600;color:#0E1109">Plant Protein</span>
+                                    <span style="font-size:15px;font-weight:700;color:#0E1109;text-align:right">1kg ₹4,300 · 2kg ₹7,999</span>
+                                </div>
+                                <div style="display:flex;justify-content:space-between;gap:12px;padding:14px 0;border-bottom:1px solid #E7EBDD">
+                                    <span style="font-size:16px;font-weight:600;color:#0E1109">Ignite Fat Burner</span>
+                                    <span style="font-size:15px;font-weight:700;color:#0E1109;text-align:right">250g ₹4,200</span>
+                                </div>
+                                <div style="display:flex;justify-content:space-between;gap:12px;padding:14px 0;border-bottom:1px solid #E7EBDD">
+                                    <span style="font-size:16px;font-weight:600;color:#0E1109">EAA</span>
+                                    <span style="font-size:15px;font-weight:700;color:#0E1109;text-align:right">250g ₹2,100</span>
+                                </div>
+                                <div style="display:flex;justify-content:space-between;gap:12px;padding:14px 0;border-bottom:1px solid #E7EBDD">
+                                    <span style="font-size:16px;font-weight:600;color:#0E1109">ATP Creatine</span>
+                                    <span style="font-size:15px;font-weight:700;color:#0E1109;text-align:right">250g ₹1,499</span>
+                                </div>
+                                <div style="display:flex;justify-content:space-between;gap:12px;padding:14px 0;border-bottom:1px solid #E7EBDD">
+                                    <span style="font-size:16px;font-weight:600;color:#0E1109">Omega-3 Softgel</span>
+                                    <span style="font-size:15px;font-weight:700;color:#0E1109;text-align:right">₹1,099</span>
+                                </div>
+                                <div style="display:flex;justify-content:space-between;gap:12px;padding:14px 0;border-bottom:1px solid #E7EBDD">
+                                    <span style="font-size:16px;font-weight:600;color:#0E1109">Calcium Tablet</span>
+                                    <span style="font-size:15px;font-weight:700;color:#0E1109;text-align:right">₹999</span>
+                                </div>
+                                <div style="display:flex;justify-content:space-between;gap:12px;padding:14px 0;border-bottom:1px solid #E7EBDD">
+                                    <span style="font-size:16px;font-weight:600;color:#0E1109">Peanut Butter</span>
+                                    <span style="font-size:15px;font-weight:700;color:#0E1109;text-align:right">500g ₹350 · 1kg ₹650</span>
+                                </div>
+                                <div style="display:flex;justify-content:space-between;gap:12px;padding:14px 0;border-bottom:1px solid #E7EBDD">
+                                    <span style="font-size:16px;font-weight:600;color:#0E1109">Multivitamin Tablet</span>
+                                    <span style="font-size:15px;font-weight:700;color:#0E1109;text-align:right">₹799</span>
+                                </div>
+                                <div style="display:flex;justify-content:space-between;gap:12px;padding:14px 0;border-bottom:1px solid #E7EBDD">
+                                    <span style="font-size:16px;font-weight:600;color:#0E1109">Vitamin C Chewable</span>
+                                    <span style="font-size:15px;font-weight:700;color:#0E1109;text-align:right">₹699</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section style="background:#FFFFFF">
+                <div style="max-width:1160px;margin:0 auto;padding:clamp(44px,6vw,68px) 20px">
+                    <div style="text-align:center">
+                        <p style="margin:0 0 14px;font-size:13px;font-weight:700;letter-spacing:2.5px;color:#5E7A10">FAQ
+                        </p>
+                        <h2
+                            style="margin:0;font-size:clamp(32px,5vw,52px);line-height:1.06;font-weight:800;letter-spacing:-1px;color:#0E1109;text-align:center;">
+                            Good questions.</h2>
+                    </div>
+                    <div style="display:flex;flex-wrap:wrap;gap:18px;margin-top:28px">
+                        <div style="flex:1 1 460px;min-width:0;background:#F4F7EA;border-radius:22px;padding:26px">
+                            <p style="margin:0;font-size:18px;font-weight:800;color:#0E1109">Is the gym really free?</p>
+                            <p style="margin:10px 0 0;font-size:16px;line-height:1.65;color:#5A5F52">Yes. With any GOMZI
+                                supplement bill of ₹999 or more, gym membership comes at no extra cost.</p>
+                        </div>
+                        <div style="flex:1 1 460px;min-width:0;background:#F4F7EA;border-radius:22px;padding:26px">
+                            <p style="margin:0;font-size:18px;font-weight:800;color:#0E1109">How long is the membership?
+                            </p>
+                            <p style="margin:10px 0 0;font-size:16px;line-height:1.65;color:#5A5F52">1 month at any one
+                                branch: Vesu, Katargam or Adajan.</p>
+                        </div>
+                        <div style="flex:1 1 460px;min-width:0;background:#F4F7EA;border-radius:22px;padding:26px">
+                            <p style="margin:0;font-size:18px;font-weight:800;color:#0E1109">My product is under ₹999?
+                            </p>
+                            <p style="margin:10px 0 0;font-size:16px;line-height:1.65;color:#5A5F52">Add another product
+                                so your total bill reaches ₹999.</p>
+                        </div>
+                        <div style="flex:1 1 460px;min-width:0;background:#F4F7EA;border-radius:22px;padding:26px">
+                            <p style="margin:0;font-size:18px;font-weight:800;color:#0E1109">How do I claim?</p>
+                            <p style="margin:10px 0 0;font-size:16px;line-height:1.65;color:#5A5F52">Buy in store or on
+                                WhatsApp at 88660 15034 and we'll issue your gym pass. Activate it within 15 days.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section
+                style="background-image:linear-gradient(180deg,rgba(14,17,9,0.82),rgba(14,17,9,0.92)),url(./assets/eda4fb635bd893162594ffdbe5b3c3a9.jpg);background-size:cover;background-position:center">
+                <div style="max-width:1160px;margin:0 auto;padding:clamp(52px,7vw,80px) 20px;text-align:center">
+                    <h2
+                        style="margin:0 auto;max-width:820px;font-size:clamp(36px,6vw,68px);line-height:1.02;font-weight:800;letter-spacing:-1.5px;color:#FFFFFF">
+                        Fuel up. <span style="color:#A3C93A">Train free.</span></h2>
+                    <p style="margin:22px auto 0;max-width:560px;font-size:19px;line-height:1.6;color:#AEB4A3">Any GOMZI
+                        supplement worth ₹999+ comes with gym membership at Vesu, Katargam or Adajan.</p>
+                    <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-top:36px"><a
+                            href="https://wa.me/918866015034?text=Hi%20GOMZI%2C%20I%20want%20the%20free%20gym%20membership%20offer"
+                            style="background:#A3C93A;color:#0E1109;text-decoration:none;padding:16px 28px;border-radius:999px;font-weight:700;font-size:16px;min-height:52px;box-sizing:border-box;display:inline-flex;align-items:center;justify-content:center;gap:10px">Claim
+                            my free membership →</a><a href="tel:+918866015034"
+                            style="background:transparent;color:#FFFFFF;border:2px solid rgba(255,255,255,0.6);text-decoration:none;padding:16px 28px;border-radius:999px;font-weight:700;font-size:16px;min-height:52px;box-sizing:border-box;display:inline-flex;align-items:center;justify-content:center;gap:10px">Call
+                            88660 15034</a></div>
+                </div>
+            </section>
+            <footer style="background:#0E1109">
+                <div
+                    class="footer-wrap"
+                    style="max-width:1160px;margin:0 auto;padding:36px 20px 44px;display:flex;flex-direction:column;gap:12px;border-top:1px solid rgba(255,255,255,0.08)">
+                    <p style="margin:0;font-size:14px;line-height:1.6;color:#AEB4A3">GOMZI Supplements × Fitness with
+                        Gomzi · G-23, Time Square, Gaurav Path Road, beside Gajera Global School, Adajan, Pal Gam,
+                        Surat, Gujarat 394510 · www.ragnutrition.in · 88660 15034</p>
+                    <p style="margin:0;font-size:12.5px;line-height:1.6;color:#7C8273">T&amp;C: One gym pass per bill,
+                        valid 1 month at one branch, activated within 15 days. Free Creatine/BCAA applies to whey bought
+                        separately, not inside packs. Pack services booked within 30 days; trainer slots are limited.
+                        Offers cannot be combined. Free items subject to stock.</p>
+                </div>
+            </footer>
+            <!-- Mobile Sticky Conversion Bar -->
+            <div class="mobile-sticky-bar">
+                <a href="https://wa.me/918866015034?text=Hi%20GOMZI%2C%20I%20want%20the%20free%20gym%20membership%20offer"
+                    class="cta-btn"
+                    style="flex:1;background:#A3C93A;color:#0E1109;text-decoration:none;padding:12px 16px;border-radius:999px;font-weight:700;font-size:14px;display:inline-flex;align-items:center;justify-content:center;gap:6px">
+                    Claim on WhatsApp →
+                </a>
+                <a href="tel:+918866015034"
+                    style="background:rgba(255,255,255,0.12);color:#FFFFFF;border:1px solid rgba(255,255,255,0.3);text-decoration:none;padding:12px 16px;border-radius:999px;font-weight:700;font-size:14px;display:inline-flex;align-items:center;justify-content:center;gap:6px">
+                    Call
+                </a>
+            </div>
+        </div>
+    </x-dc>
+    <script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":8200}}'>
+class Component extends DCLogic {
+renderVals() {
+return {};
+}
+}
+</script>
+</body>
+
+</html>
