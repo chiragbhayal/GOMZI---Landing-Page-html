@@ -23,21 +23,22 @@
                     box-sizing: border-box;
                 }
 
-                html {
+                html, body {
+                    margin: 0;
+                    padding: 0;
+                    width: 100%;
+                    max-width: 100%;
+                    overflow-x: hidden;
                     scroll-behavior: smooth;
                     -webkit-text-size-adjust: 100%;
-                }
-
-                body {
-                    margin: 0;
                     background: #0E1109;
                     font-family: Poppins, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-                    overflow-x: hidden;
                 }
 
                 img {
                     max-width: 100%;
                     height: auto;
+                    display: block;
                 }
 
                 a:focus-visible {
@@ -45,7 +46,6 @@
                     outline-offset: 3px;
                 }
 
-                /* Smooth interactive touch targets */
                 .cta-btn {
                     transition: transform 0.18s ease, box-shadow 0.18s ease, filter 0.18s ease;
                 }
@@ -59,179 +59,17 @@
                     filter: brightness(0.95);
                 }
 
-                /* Pricing Table Styles */
-                .price-table-wrapper {
-                    width: 100%;
+                /* Price Section Divider */
+                .price-columns-container {
+                    display: flex;
+                    flex-wrap: wrap;
                     margin-top: 28px;
-                    border-radius: 18px;
-                    border: 1px solid #E5E9DC;
-                    overflow-x: auto;
-                    -webkit-overflow-scrolling: touch;
-                    background: #FFFFFF;
-                    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.04);
+                }
+                .price-col-left {
+                    border-right: 1.5px solid #E2E6D8;
                 }
 
-                .price-table {
-                    width: 100%;
-                    border-collapse: collapse;
-                    text-align: left;
-                    font-family: inherit;
-                    min-width: 580px;
-                }
-
-                .price-table th {
-                    background: #0E1109;
-                    color: #FFFFFF;
-                    padding: 16px 20px;
-                    font-size: 13px;
-                    font-weight: 800;
-                    letter-spacing: 1px;
-                    text-transform: uppercase;
-                    border: none;
-                }
-
-                .price-table td {
-                    padding: 14px 20px;
-                    vertical-align: middle;
-                    font-size: 15px;
-                    color: #0E1109;
-                    border-bottom: 1px solid #EEF2E6;
-                }
-
-                .price-table tbody tr:last-child td {
-                    border-bottom: none;
-                }
-
-                .price-table tbody tr:nth-child(even) {
-                    background: #F9FBF5;
-                }
-
-                .price-table tbody tr:hover {
-                    background: #F1F6E6;
-                }
-
-                .badge-free {
-                    display: inline-flex;
-                    align-items: center;
-                    gap: 5px;
-                    background: rgba(94, 122, 16, 0.14);
-                    color: #5E7A10;
-                    font-weight: 700;
-                    font-size: 12px;
-                    padding: 5px 12px;
-                    border-radius: 999px;
-                    white-space: nowrap;
-                }
-
-                .badge-mix {
-                    display: inline-flex;
-                    align-items: center;
-                    gap: 5px;
-                    background: rgba(14, 17, 9, 0.08);
-                    color: #5A5F52;
-                    font-weight: 600;
-                    font-size: 12px;
-                    padding: 5px 12px;
-                    border-radius: 999px;
-                    white-space: nowrap;
-                }
-
-                /* Mobile Floating CTA Bar */
-                .mobile-sticky-bar {
-                    display: none;
-                    position: fixed;
-                    bottom: 0;
-                    left: 0;
-                    right: 0;
-                    z-index: 9999;
-                    background: rgba(14, 17, 9, 0.94);
-                    backdrop-filter: blur(12px);
-                    -webkit-backdrop-filter: blur(12px);
-                    padding: 10px 16px;
-                    border-top: 1px solid rgba(163, 201, 58, 0.3);
-                    gap: 10px;
-                    align-items: center;
-                    box-shadow: 0 -8px 25px rgba(0, 0, 0, 0.5);
-                }
-
-                /* Responsive Breakpoints */
-                @media (max-width: 900px) {
-                    .gym-grid-container {
-                        flex-direction: column !important;
-                    }
-                    .gym-main-image {
-                        width: 100% !important;
-                        height: auto !important;
-                        aspect-ratio: 16/10 !important;
-                    }
-                    .gym-side-group {
-                        flex-direction: row !important;
-                        width: 100% !important;
-                    }
-                    .gym-side-group img {
-                        flex: 1 1 0 !important;
-                        height: auto !important;
-                        aspect-ratio: 4/3 !important;
-                    }
-                }
-
-                @media (max-width: 640px) {
-                    .header-nav-links {
-                        display: none !important;
-                    }
-                    .stats-grid-box {
-                        display: grid !important;
-                        grid-template-columns: repeat(2, 1fr) !important;
-                        gap: 16px !important;
-                    }
-                    .hero-img-badge {
-                        left: 12px !important;
-                        bottom: 14px !important;
-                        padding: 12px 16px !important;
-                        max-width: 210px !important;
-                    }
-                    .hero-cta-group {
-                        flex-direction: column !important;
-                        width: 100% !important;
-                    }
-                    .hero-cta-group a {
-                        width: 100% !important;
-                        text-align: center !important;
-                        justify-content: center !important;
-                    }
-                    .family-img-group {
-                        margin-top: 16px !important;
-                    }
-                    .bonus-card {
-                        flex-direction: column !important;
-                        text-align: center !important;
-                        padding: 22px 18px !important;
-                    }
-                    .bonus-card a {
-                        width: 100% !important;
-                        justify-content: center !important;
-                    }
-                    .mobile-sticky-bar {
-                        display: flex !important;
-                    }
-                    .footer-wrap {
-                        padding-bottom: 90px !important;
-                    }
-                    .floating-contact-widget {
-                        right: 16px !important;
-                        bottom: 84px !important;
-                    }
-                    .fab-circle {
-                        width: 50px !important;
-                        height: 50px !important;
-                    }
-                    .fab-call {
-                        width: 44px !important;
-                        height: 44px !important;
-                    }
-                }
-
-                /* Floating Contact Widget & Popup */
+                /* Floating Contact Widget (Right Side) */
                 .floating-contact-widget {
                     position: fixed;
                     right: 24px;
@@ -294,6 +132,132 @@
                 .fab-whatsapp.pulse {
                     animation: fab-pulse 2.2s infinite;
                 }
+
+                /* TABLET BREAKPOINT (<= 900px) */
+                @media (max-width: 900px) {
+                    .gym-grid-container {
+                        flex-direction: column !important;
+                    }
+                    .gym-main-image {
+                        width: 100% !important;
+                        height: auto !important;
+                        aspect-ratio: 16/10 !important;
+                    }
+                    .gym-side-group {
+                        flex-direction: row !important;
+                        width: 100% !important;
+                    }
+                    .gym-side-group img {
+                        flex: 1 1 0 !important;
+                        width: 100% !important;
+                        height: auto !important;
+                        aspect-ratio: 4/3 !important;
+                    }
+                }
+
+                /* MOBILE BREAKPOINT (<= 768px) */
+                @media (max-width: 768px) {
+                    .nav-menu-links {
+                        display: none !important;
+                    }
+                    .header-cta-btn {
+                        padding: 10px 18px !important;
+                        font-size: 14px !important;
+                        min-height: 42px !important;
+                    }
+                    .stats-grid-box {
+                        display: grid !important;
+                        grid-template-columns: repeat(2, 1fr) !important;
+                        gap: 16px !important;
+                    }
+                    .hero-img-badge {
+                        left: 12px !important;
+                        bottom: 12px !important;
+                        padding: 12px 16px !important;
+                        max-width: 200px !important;
+                    }
+                    .hero-cta-group {
+                        flex-direction: column !important;
+                        width: 100% !important;
+                    }
+                    .hero-cta-group a {
+                        width: 100% !important;
+                        text-align: center !important;
+                        justify-content: center !important;
+                    }
+                    .bonus-card {
+                        flex-direction: column !important;
+                        text-align: center !important;
+                        padding: 20px 16px !important;
+                    }
+                    .bonus-card p {
+                        font-size: 17px !important;
+                    }
+                    .bonus-card a {
+                        width: 100% !important;
+                        justify-content: center !important;
+                    }
+                    .price-col-left {
+                        border-right: none !important;
+                        border-bottom: 2px solid #E2E6D8 !important;
+                        padding-right: 0 !important;
+                        padding-bottom: 16px !important;
+                        margin-bottom: 16px !important;
+                    }
+                    .price-col-right {
+                        padding-left: 0 !important;
+                    }
+                    .footer-cta-group {
+                        flex-direction: column !important;
+                        width: 100% !important;
+                    }
+                    .footer-cta-group a {
+                        width: 100% !important;
+                        text-align: center !important;
+                        justify-content: center !important;
+                    }
+                    .floating-contact-widget {
+                        right: 16px !important;
+                        bottom: 20px !important;
+                    }
+                    .fab-circle {
+                        width: 50px !important;
+                        height: 50px !important;
+                    }
+                    .fab-call {
+                        width: 44px !important;
+                        height: 44px !important;
+                    }
+                }
+
+                /* SMALL MOBILE BREAKPOINT (<= 480px) */
+                @media (max-width: 480px) {
+                    .pricing-card-wrap {
+                        padding: 20px 14px !important;
+                        border-radius: 20px !important;
+                    }
+                    .price-row-item {
+                        flex-direction: column !important;
+                        align-items: flex-start !important;
+                        gap: 4px !important;
+                        padding: 12px 0 !important;
+                    }
+                    .price-row-item .price-val {
+                        text-align: left !important;
+                        color: #5E7A10 !important;
+                        font-size: 14.5px !important;
+                    }
+                    .hero-img-badge {
+                        left: 8px !important;
+                        bottom: 8px !important;
+                        padding: 10px 12px !important;
+                        border-radius: 14px !important;
+                        max-width: 180px !important;
+                    }
+                    .hero-img-badge p:last-child {
+                        font-size: 16px !important;
+                    }
+                }
             </style>
         </helmet>
         <div style="font-family:Poppins,Arial,sans-serif;color:#0E1109;background:#FFFFFF;width:100%;overflow-x:hidden">
@@ -302,20 +266,23 @@
                 LAUNCH OFFER · Buy GOMZI supplements, get gym membership FREE*</div>
             <header style="background:#0E1109">
                 <div
-                    style="max-width:1160px;margin:0 auto;padding:14px 20px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:14px">
+                    style="max-width:1160px;margin:0 auto;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;gap:14px">
                     <div style="background:#FFFFFF;border-radius:12px;padding:6px 12px;display:flex"><img
                             src="./assets/ff7259e2560ee8e5261a6af44b5a4406.png" alt="GOMZI Supplements"
-                            style="height:40px;width:auto;display:block"></div>
-                    <div class="header-nav-links" style="display:flex;flex-wrap:wrap;align-items:center;gap:22px"><a href="#bestsellers"
-                            style="color:#FFFFFF;text-decoration:none;font-size:15px;font-weight:600">Products</a><a
-                            href="#results"
-                            style="color:#FFFFFF;text-decoration:none;font-size:15px;font-weight:600">Results</a><a
-                            href="#gyms"
-                            style="color:#FFFFFF;text-decoration:none;font-size:15px;font-weight:600">Gyms</a><a
-                            href="https://wa.me/918866015034?text=Hi%20GOMZI%2C%20I%20want%20the%20free%20gym%20membership%20offer"
-                            class="cta-btn"
-                            style="background:#A3C93A;color:#0E1109;text-decoration:none;padding:16px 28px;border-radius:999px;font-weight:700;font-size:16px;min-height:52px;box-sizing:border-box;display:inline-flex;align-items:center;justify-content:center;gap:10px">Claim
-                            offer</a></div>
+                            style="height:38px;width:auto;display:block"></div>
+                    <div style="display:flex;align-items:center;gap:20px">
+                        <div class="nav-menu-links" style="display:flex;align-items:center;gap:22px"><a href="#bestsellers"
+                                style="color:#FFFFFF;text-decoration:none;font-size:15px;font-weight:600">Products</a><a
+                                href="#results"
+                                style="color:#FFFFFF;text-decoration:none;font-size:15px;font-weight:600">Results</a><a
+                                href="#gyms"
+                                style="color:#FFFFFF;text-decoration:none;font-size:15px;font-weight:600">Gyms</a>
+                        </div>
+                        <a href="https://wa.me/918866015034?text=Hi%20GOMZI%2C%20I%20want%20the%20free%20gym%20membership%20offer"
+                            class="cta-btn header-cta-btn"
+                            style="background:#A3C93A;color:#0E1109;text-decoration:none;padding:14px 24px;border-radius:999px;font-weight:700;font-size:15px;min-height:48px;box-sizing:border-box;display:inline-flex;align-items:center;justify-content:center;gap:8px;white-space:nowrap">Claim
+                            offer</a>
+                    </div>
                 </div>
             </header>
             <section
@@ -530,11 +497,13 @@
                         </div>
                     </div>
                     <div
+                        class="bonus-card"
                         style="margin-top:24px;background:#0E1109;border-radius:24px;padding:24px 28px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px">
                         <p style="margin:0;font-size:20px;font-weight:800;color:#FFFFFF">Bonus: <span
                                 style="color:#A3C93A">1kg whey → Creatine FREE</span> &nbsp;·&nbsp; <span
                                 style="color:#A3C93A">2kg whey → BCAA FREE</span></p><a
                             href="https://wa.me/918866015034?text=Hi%20GOMZI%2C%20I%20want%20the%20free%20gym%20membership%20offer"
+                            class="cta-btn"
                             style="background:#A3C93A;color:#0E1109;text-decoration:none;padding:16px 28px;border-radius:999px;font-weight:700;font-size:16px;min-height:52px;box-sizing:border-box;display:inline-flex;align-items:center;justify-content:center;gap:10px">Claim
                             on WhatsApp</a>
                     </div>
@@ -693,12 +662,12 @@
                     </div>
                     <div class="gym-grid-container" style="display:flex;flex-wrap:wrap;gap:18px;margin-top:26px">
                         <img class="gym-main-image" src="./assets/08a4896b9f05d2dbf6f695d222181c7a.jpg" alt="Fitness with Gomzi gym floor"
-                            style="flex:2 1 520px;min-width:0;width:100%;max-width:100%;height:420px;object-fit:cover;border-radius:28px;display:block;box-shadow:0 20px 50px rgba(0,0,0,0.18);">
+                            style="flex:2 1 520px;min-width:0;width:100%;max-width:100%;aspect-ratio:16/11;object-fit:cover;border-radius:28px;display:block;box-shadow:0 20px 50px rgba(0,0,0,0.18);">
                         <div class="gym-side-group" style="flex:1 1 300px;min-width:0;display:flex;flex-direction:column;gap:18px"><img
                                 src="./assets/eda4fb635bd893162594ffdbe5b3c3a9.jpg" alt="Fitness with Gomzi gym"
-                                style="width:100%;height:201px;object-fit:cover;border-radius:24px;display:block;box-shadow:0 20px 50px rgba(0,0,0,0.18);"><img
+                                style="width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:24px;display:block;box-shadow:0 20px 50px rgba(0,0,0,0.18);"><img
                                 src="./assets/254bb02bd8047d1ea34a700dc544c984.jpg" alt="Fitness with Gomzi gym"
-                                style="width:100%;height:201px;object-fit:cover;border-radius:24px;display:block;box-shadow:0 20px 50px rgba(0,0,0,0.18);">
+                                style="width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:24px;display:block;box-shadow:0 20px 50px rgba(0,0,0,0.18);">
                         </div>
                     </div>
                 </div>
@@ -717,15 +686,16 @@
                                 Vesu, Katargam and Adajan who now train with GOMZI fuel.</p>
                             <div style="margin-top:28px"><a
                                     href="https://wa.me/918866015034?text=Hi%20GOMZI%2C%20I%20want%20the%20free%20gym%20membership%20offer"
+                                    class="cta-btn"
                                     style="background:#0E1109;color:#FFFFFF;text-decoration:none;padding:16px 28px;border-radius:999px;font-weight:700;font-size:16px;min-height:52px;box-sizing:border-box;display:inline-flex;align-items:center;justify-content:center;gap:10px">Join
                                     them on WhatsApp</a></div>
                         </div>
-                        <div style="flex:1 1 520px;min-width:0;display:flex;gap:16px"><img
+                        <div class="family-img-group" style="flex:1 1 520px;min-width:0;display:flex;gap:16px"><img
                                 src="./assets/5baa7858fdf7925e1d73e02fed28cf93.jpg" alt="GOMZI members in store"
-                                style="flex:1 1 0;min-width:0;width:0;aspect-ratio:3/4;object-fit:cover;border-radius:24px;display:block;box-shadow:0 20px 50px rgba(0,0,0,0.18);"><img
+                                style="flex:1 1 50%;min-width:0;width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:24px;display:block;box-shadow:0 20px 50px rgba(0,0,0,0.18);"><img
                                 src="./assets/381ab19c5c28659c35e697f315f807ce.jpg"
                                 alt="GOMZI customer with whey protein"
-                                style="flex:1 1 0;min-width:0;width:0;aspect-ratio:3/4;object-fit:cover;border-radius:24px;display:block;margin-top:26px;box-shadow:0 20px 50px rgba(0,0,0,0.18);">
+                                style="flex:1 1 50%;min-width:0;width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:24px;display:block;margin-top:26px;box-shadow:0 20px 50px rgba(0,0,0,0.18);">
                         </div>
                     </div>
                 </div>
@@ -733,6 +703,7 @@
             <section id="prices" style="background:#F4F7EA">
                 <div style="max-width:1160px;margin:0 auto;padding:clamp(44px,6vw,68px) 20px">
                     <div
+                        class="pricing-card-wrap"
                         style="background:#FFFFFF;border-radius:30px;padding:clamp(24px,4vw,48px);box-shadow:0 20px 50px rgba(0,0,0,0.18);">
                         <div
                             style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:16px">
@@ -748,85 +719,85 @@
                         <div class="price-columns-container" style="display:flex;flex-wrap:wrap;margin-top:28px;">
                             <!-- LEFT SECTION / COLUMN (Products 1-9) -->
                             <div class="price-col price-col-left" style="flex:1 1 340px;min-width:0;padding-right:clamp(16px, 3vw, 36px);border-right:1.5px solid #E2E6D8;">
-                                <div style="display:flex;justify-content:space-between;gap:12px;padding:14px 0;border-bottom:1px solid #E7EBDD">
+                                <div class="price-row-item" style="display:flex;justify-content:space-between;gap:12px;padding:14px 0;border-bottom:1px solid #E7EBDD">
                                     <span style="font-size:16px;font-weight:600;color:#0E1109">Whey Protein Blend</span>
-                                    <span style="font-size:15px;font-weight:700;color:#0E1109;text-align:right">1kg ₹4,300 · 2kg ₹7,600</span>
+                                    <span class="price-val" style="font-size:15px;font-weight:700;color:#0E1109;text-align:right">1kg ₹4,300 · 2kg ₹7,600</span>
                                 </div>
-                                <div style="display:flex;justify-content:space-between;gap:12px;padding:14px 0;border-bottom:1px solid #E7EBDD">
+                                <div class="price-row-item" style="display:flex;justify-content:space-between;gap:12px;padding:14px 0;border-bottom:1px solid #E7EBDD">
                                     <span style="font-size:16px;font-weight:600;color:#0E1109">Whey Isolate</span>
-                                    <span style="font-size:15px;font-weight:700;color:#0E1109;text-align:right">1kg ₹7,000 · 2kg ₹13,500</span>
+                                    <span class="price-val" style="font-size:15px;font-weight:700;color:#0E1109;text-align:right">1kg ₹7,000 · 2kg ₹13,500</span>
                                 </div>
-                                <div style="display:flex;justify-content:space-between;gap:12px;padding:14px 0;border-bottom:1px solid #E7EBDD">
+                                <div class="price-row-item" style="display:flex;justify-content:space-between;gap:12px;padding:14px 0;border-bottom:1px solid #E7EBDD">
                                     <span style="font-size:16px;font-weight:600;color:#0E1109">Mass Gainer</span>
-                                    <span style="font-size:15px;font-weight:700;color:#0E1109;text-align:right">1kg ₹1,499 · 3kg ₹4,100</span>
+                                    <span class="price-val" style="font-size:15px;font-weight:700;color:#0E1109;text-align:right">1kg ₹1,499 · 3kg ₹4,100</span>
                                 </div>
-                                <div style="display:flex;justify-content:space-between;gap:12px;padding:14px 0;border-bottom:1px solid #E7EBDD">
+                                <div class="price-row-item" style="display:flex;justify-content:space-between;gap:12px;padding:14px 0;border-bottom:1px solid #E7EBDD">
                                     <span style="font-size:16px;font-weight:600;color:#0E1109">Pre-Workout</span>
-                                    <span style="font-size:15px;font-weight:700;color:#0E1109;text-align:right">250g ₹2,700</span>
+                                    <span class="price-val" style="font-size:15px;font-weight:700;color:#0E1109;text-align:right">250g ₹2,700</span>
                                 </div>
-                                <div style="display:flex;justify-content:space-between;gap:12px;padding:14px 0;border-bottom:1px solid #E7EBDD">
+                                <div class="price-row-item" style="display:flex;justify-content:space-between;gap:12px;padding:14px 0;border-bottom:1px solid #E7EBDD">
                                     <span style="font-size:16px;font-weight:600;color:#0E1109">BCAA</span>
-                                    <span style="font-size:15px;font-weight:700;color:#0E1109;text-align:right">250g ₹1,600</span>
+                                    <span class="price-val" style="font-size:15px;font-weight:700;color:#0E1109;text-align:right">250g ₹1,600</span>
                                 </div>
-                                <div style="display:flex;justify-content:space-between;gap:12px;padding:14px 0;border-bottom:1px solid #E7EBDD">
+                                <div class="price-row-item" style="display:flex;justify-content:space-between;gap:12px;padding:14px 0;border-bottom:1px solid #E7EBDD">
                                     <span style="font-size:16px;font-weight:600;color:#0E1109">PCOS Tablet</span>
-                                    <span style="font-size:15px;font-weight:700;color:#0E1109;text-align:right">₹1,199</span>
+                                    <span class="price-val" style="font-size:15px;font-weight:700;color:#0E1109;text-align:right">₹1,199</span>
                                 </div>
-                                <div style="display:flex;justify-content:space-between;gap:12px;padding:14px 0;border-bottom:1px solid #E7EBDD">
+                                <div class="price-row-item" style="display:flex;justify-content:space-between;gap:12px;padding:14px 0;border-bottom:1px solid #E7EBDD">
                                     <span style="font-size:16px;font-weight:600;color:#0E1109">Liver Health Tablet</span>
-                                    <span style="font-size:15px;font-weight:700;color:#0E1109;text-align:right">₹1,299</span>
+                                    <span class="price-val" style="font-size:15px;font-weight:700;color:#0E1109;text-align:right">₹1,299</span>
                                 </div>
-                                <div style="display:flex;justify-content:space-between;gap:12px;padding:14px 0;border-bottom:1px solid #E7EBDD">
+                                <div class="price-row-item" style="display:flex;justify-content:space-between;gap:12px;padding:14px 0;border-bottom:1px solid #E7EBDD">
                                     <span style="font-size:16px;font-weight:600;color:#0E1109">Biotin Capsule</span>
-                                    <span style="font-size:15px;font-weight:700;color:#0E1109;text-align:right">₹999</span>
+                                    <span class="price-val" style="font-size:15px;font-weight:700;color:#0E1109;text-align:right">₹999</span>
                                 </div>
-                                <div style="display:flex;justify-content:space-between;gap:12px;padding:14px 0;border-bottom:1px solid #E7EBDD">
+                                <div class="price-row-item" style="display:flex;justify-content:space-between;gap:12px;padding:14px 0;border-bottom:1px solid #E7EBDD">
                                     <span style="font-size:16px;font-weight:600;color:#0E1109">D3 + K2 Tablet</span>
-                                    <span style="font-size:15px;font-weight:700;color:#0E1109;text-align:right">₹899</span>
+                                    <span class="price-val" style="font-size:15px;font-weight:700;color:#0E1109;text-align:right">₹899</span>
                                 </div>
                             </div>
 
                             <!-- RIGHT SECTION / COLUMN (Products 10-19) -->
                             <div class="price-col price-col-right" style="flex:1 1 340px;min-width:0;padding-left:clamp(16px, 3vw, 36px);">
-                                <div style="display:flex;justify-content:space-between;gap:12px;padding:14px 0;border-bottom:1px solid #E7EBDD">
+                                <div class="price-row-item" style="display:flex;justify-content:space-between;gap:12px;padding:14px 0;border-bottom:1px solid #E7EBDD">
                                     <span style="font-size:16px;font-weight:600;color:#0E1109">Whey Concentrate</span>
-                                    <span style="font-size:15px;font-weight:700;color:#0E1109;text-align:right">1kg ₹5,300 · 2kg ₹8,600</span>
+                                    <span class="price-val" style="font-size:15px;font-weight:700;color:#0E1109;text-align:right">1kg ₹5,300 · 2kg ₹8,600</span>
                                 </div>
-                                <div style="display:flex;justify-content:space-between;gap:12px;padding:14px 0;border-bottom:1px solid #E7EBDD">
+                                <div class="price-row-item" style="display:flex;justify-content:space-between;gap:12px;padding:14px 0;border-bottom:1px solid #E7EBDD">
                                     <span style="font-size:16px;font-weight:600;color:#0E1109">Plant Protein</span>
-                                    <span style="font-size:15px;font-weight:700;color:#0E1109;text-align:right">1kg ₹4,300 · 2kg ₹7,999</span>
+                                    <span class="price-val" style="font-size:15px;font-weight:700;color:#0E1109;text-align:right">1kg ₹4,300 · 2kg ₹7,999</span>
                                 </div>
-                                <div style="display:flex;justify-content:space-between;gap:12px;padding:14px 0;border-bottom:1px solid #E7EBDD">
+                                <div class="price-row-item" style="display:flex;justify-content:space-between;gap:12px;padding:14px 0;border-bottom:1px solid #E7EBDD">
                                     <span style="font-size:16px;font-weight:600;color:#0E1109">Ignite Fat Burner</span>
-                                    <span style="font-size:15px;font-weight:700;color:#0E1109;text-align:right">250g ₹4,200</span>
+                                    <span class="price-val" style="font-size:15px;font-weight:700;color:#0E1109;text-align:right">250g ₹4,200</span>
                                 </div>
-                                <div style="display:flex;justify-content:space-between;gap:12px;padding:14px 0;border-bottom:1px solid #E7EBDD">
+                                <div class="price-row-item" style="display:flex;justify-content:space-between;gap:12px;padding:14px 0;border-bottom:1px solid #E7EBDD">
                                     <span style="font-size:16px;font-weight:600;color:#0E1109">EAA</span>
-                                    <span style="font-size:15px;font-weight:700;color:#0E1109;text-align:right">250g ₹2,100</span>
+                                    <span class="price-val" style="font-size:15px;font-weight:700;color:#0E1109;text-align:right">250g ₹2,100</span>
                                 </div>
-                                <div style="display:flex;justify-content:space-between;gap:12px;padding:14px 0;border-bottom:1px solid #E7EBDD">
+                                <div class="price-row-item" style="display:flex;justify-content:space-between;gap:12px;padding:14px 0;border-bottom:1px solid #E7EBDD">
                                     <span style="font-size:16px;font-weight:600;color:#0E1109">ATP Creatine</span>
-                                    <span style="font-size:15px;font-weight:700;color:#0E1109;text-align:right">250g ₹1,499</span>
+                                    <span class="price-val" style="font-size:15px;font-weight:700;color:#0E1109;text-align:right">250g ₹1,499</span>
                                 </div>
-                                <div style="display:flex;justify-content:space-between;gap:12px;padding:14px 0;border-bottom:1px solid #E7EBDD">
+                                <div class="price-row-item" style="display:flex;justify-content:space-between;gap:12px;padding:14px 0;border-bottom:1px solid #E7EBDD">
                                     <span style="font-size:16px;font-weight:600;color:#0E1109">Omega-3 Softgel</span>
-                                    <span style="font-size:15px;font-weight:700;color:#0E1109;text-align:right">₹1,099</span>
+                                    <span class="price-val" style="font-size:15px;font-weight:700;color:#0E1109;text-align:right">₹1,099</span>
                                 </div>
-                                <div style="display:flex;justify-content:space-between;gap:12px;padding:14px 0;border-bottom:1px solid #E7EBDD">
+                                <div class="price-row-item" style="display:flex;justify-content:space-between;gap:12px;padding:14px 0;border-bottom:1px solid #E7EBDD">
                                     <span style="font-size:16px;font-weight:600;color:#0E1109">Calcium Tablet</span>
-                                    <span style="font-size:15px;font-weight:700;color:#0E1109;text-align:right">₹999</span>
+                                    <span class="price-val" style="font-size:15px;font-weight:700;color:#0E1109;text-align:right">₹999</span>
                                 </div>
-                                <div style="display:flex;justify-content:space-between;gap:12px;padding:14px 0;border-bottom:1px solid #E7EBDD">
+                                <div class="price-row-item" style="display:flex;justify-content:space-between;gap:12px;padding:14px 0;border-bottom:1px solid #E7EBDD">
                                     <span style="font-size:16px;font-weight:600;color:#0E1109">Peanut Butter</span>
-                                    <span style="font-size:15px;font-weight:700;color:#0E1109;text-align:right">500g ₹350 · 1kg ₹650</span>
+                                    <span class="price-val" style="font-size:15px;font-weight:700;color:#0E1109;text-align:right">500g ₹350 · 1kg ₹650</span>
                                 </div>
-                                <div style="display:flex;justify-content:space-between;gap:12px;padding:14px 0;border-bottom:1px solid #E7EBDD">
+                                <div class="price-row-item" style="display:flex;justify-content:space-between;gap:12px;padding:14px 0;border-bottom:1px solid #E7EBDD">
                                     <span style="font-size:16px;font-weight:600;color:#0E1109">Multivitamin Tablet</span>
-                                    <span style="font-size:15px;font-weight:700;color:#0E1109;text-align:right">₹799</span>
+                                    <span class="price-val" style="font-size:15px;font-weight:700;color:#0E1109;text-align:right">₹799</span>
                                 </div>
-                                <div style="display:flex;justify-content:space-between;gap:12px;padding:14px 0;border-bottom:1px solid #E7EBDD">
+                                <div class="price-row-item" style="display:flex;justify-content:space-between;gap:12px;padding:14px 0;border-bottom:1px solid #E7EBDD">
                                     <span style="font-size:16px;font-weight:600;color:#0E1109">Vitamin C Chewable</span>
-                                    <span style="font-size:15px;font-weight:700;color:#0E1109;text-align:right">₹699</span>
+                                    <span class="price-val" style="font-size:15px;font-weight:700;color:#0E1109;text-align:right">₹699</span>
                                 </div>
                             </div>
                         </div>
@@ -897,18 +868,6 @@
                         Offers cannot be combined. Free items subject to stock.</p>
                 </div>
             </footer>
-            <!-- Mobile Sticky Conversion Bar -->
-            <div class="mobile-sticky-bar">
-                <a href="https://wa.me/918866015034?text=Hi%20GOMZI%2C%20I%20want%20the%20free%20gym%20membership%20offer"
-                    class="cta-btn"
-                    style="flex:1;background:#A3C93A;color:#0E1109;text-decoration:none;padding:12px 16px;border-radius:999px;font-weight:700;font-size:14px;display:inline-flex;align-items:center;justify-content:center;gap:6px">
-                    Claim on WhatsApp →
-                </a>
-                <a href="tel:+918866015034"
-                    style="background:rgba(255,255,255,0.12);color:#FFFFFF;border:1px solid rgba(255,255,255,0.3);text-decoration:none;padding:12px 16px;border-radius:999px;font-weight:700;font-size:14px;display:inline-flex;align-items:center;justify-content:center;gap:6px">
-                    Call
-                </a>
-            </div>
             <!-- Floating Contact Widget with Circular Buttons (Right Side) -->
             <div class="floating-contact-widget" id="gomziFloatingWidget">
                 <!-- Call Button (Circle) -->
